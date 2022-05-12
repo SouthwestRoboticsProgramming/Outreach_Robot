@@ -6,6 +6,8 @@ public class Input {
 
     private final XboxController main;
     private final XboxController buddy;
+
+    // TODO: Use deadzone in place of 0 when deciding to use buddy controller
     
     public Input() {
         main = new XboxController(0);
@@ -13,14 +15,24 @@ public class Input {
     }
 
     public double getDriveX() {
-        return main.getLeftX();
+        if (Math.abs(main.getLeftX()) > 0) {
+            return main.getLeftX();
+        }
+        return buddy.getLeftX();
     }
-    
+
     public double getDriveY() {
-        return main.getLeftY();
+        if (Math.abs(main.getLeftY()) > 0) {
+            return main.getLeftY();
+        }
+        return buddy.getLeftY();
     }
 
     public double getDriveRot() {
-        return main.getRightX();
+        if (Math.abs(main.getRightX()) > 0) {
+            return main.getRightX();
+        }
+        return buddy.getRightX();
     }
+    
 }

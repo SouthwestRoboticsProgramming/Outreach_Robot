@@ -48,6 +48,7 @@ public class Drive implements Subsystem{
         double driveRot = -input.getDriveRot();
 
         ChassisSpeeds chassis = new ChassisSpeeds(driveY, driveX, driveRot); // All in m/s [Forward, Left, Counterclocwise (radians)]
+        System.out.println(chassis);
         
         MecanumDriveWheelSpeeds speeds = kinematics.toWheelSpeeds(chassis);
 

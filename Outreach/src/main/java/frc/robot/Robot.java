@@ -2,6 +2,8 @@ package frc.robot;
 
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.RobotBase;
+import frc.robot.control.Input;
+import frc.robot.subsystems.Drive;
 
 public class Robot extends RobotBase {
   public static final double PERIODIC_PER_SECOND = 50;
@@ -11,14 +13,18 @@ public class Robot extends RobotBase {
     return INSTANCE;
   }
 
+  public Input input;
+  public Drive drive;
+
   private volatile boolean running;
 
   public void robotInit() {
-
+    input = new Input();
+    drive = new Drive(input);
   }
 
   public void robotPeriodic() {
-    
+
   }
 
   public void disabledInit() {
