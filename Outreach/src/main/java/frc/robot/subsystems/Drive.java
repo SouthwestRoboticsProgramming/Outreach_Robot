@@ -4,10 +4,8 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.MecanumDriveKinematics;
 import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
-import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.robot.control.Input;
 
-public class Drive implements Subsystem{
+public class Drive {
     // Locations of wheels
 
     // Front back: 37 cm
@@ -24,37 +22,28 @@ public class Drive implements Subsystem{
 
     MecanumDriveKinematics kinematics;
 
-    private final Input input;
 
-    public Drive(Input input) {
+    public Drive() {
+
+        // System.out.println("Drive created");
         kinematics = new MecanumDriveKinematics(frontLeft, frontRight, backLeft, backRight);
 
-        w1 = new MecanumModule(10);
-        w2 = new MecanumModule(11);
-        w3 = new MecanumModule(12);
-        w4 = new MecanumModule(13);
-
-        this.input = input;
+        w1 = new MecanumModule(10, true);
+        w2 = new MecanumModule(11, false);
+        w3 = new MecanumModule(12, true);
+        w4 = new MecanumModule(13, false);
     }
+    
 
+    public void setChassis(ChassisSpeeds chassis) {
+    System.out.println(chassis);
+    
+    MecanumDriveWheelSpeeds speeds = kinematics.toWheelSpeeds(chassis);
 
+    w1.set(speeds.frontLeftMetersPerSecond);
+    w2.set(speeds.frontRightMetersPerSecond);
+    w3.set(speeds.rearLeftMetersPerSecond);
+    w4.set(speeds.rearRightMetersPerSecond);
 
-    @Override
-    public void periodic() {
-        // Calculate what we want the robot to do based on the controller
-        
-        double driveX = -input.getDriveX();
-        double driveY = input.getDriveY();
-        double driveRot = -input.getDriveRot();
-
-        ChassisSpeeds chassis = new ChassisSpeeds(driveY, driveX, driveRot); // All in m/s [Forward, Left, Counterclocwise (radians)]
-        System.out.println(chassis);
-        
-        MecanumDriveWheelSpeeds speeds = kinematics.toWheelSpeeds(chassis);
-
-        w1.set(speeds.frontLeftMetersPerSecond);
-        w2.set(speeds.frontRightMetersPerSecond);
-        w3.set(speeds.rearLeftMetersPerSecond);
-        w4.set(speeds.rearRightMetersPerSecond);
     }
 }

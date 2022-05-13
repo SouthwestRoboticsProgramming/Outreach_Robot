@@ -1,11 +1,15 @@
 package frc.robot;
 
 import edu.wpi.first.hal.HAL;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.control.Input;
 import frc.robot.subsystems.Drive;
 
-public class Robot extends RobotBase {
+public class Robot extends TimedRobot {
   public static final double PERIODIC_PER_SECOND = 50;
   private static final Robot INSTANCE = new Robot();
 
@@ -19,12 +23,18 @@ public class Robot extends RobotBase {
   private volatile boolean running;
 
   public void robotInit() {
+    System.out.println("Robot init");
+
     input = new Input();
-    drive = new Drive(input);
+    drive = new Drive();
   }
 
   public void robotPeriodic() {
-
+    double driveY = input.getDriveY();
+    double driveX = input.getDriveX();
+    double driveRot = input.getDriveRot();
+    ChassisSpeeds chassis = new ChassisSpeeds(driveY, driveX, driveRot); // All in m/s [Forward, Left, Counterclocwise (radians)]
+    drive.setChassis(chassis);
   }
 
   public void disabledInit() {
