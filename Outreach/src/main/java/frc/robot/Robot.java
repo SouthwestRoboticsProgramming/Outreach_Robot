@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.control.Input;
 import frc.robot.subsystems.Drive;
 
+import static frc.robot.Constants.*;
+
 public class Robot extends TimedRobot {
   public static final double PERIODIC_PER_SECOND = 50;
   private static final Robot INSTANCE = new Robot();
@@ -30,9 +32,9 @@ public class Robot extends TimedRobot {
   }
 
   public void robotPeriodic() {
-    double driveY = input.getDriveY();
-    double driveX = input.getDriveX();
-    double driveRot = input.getDriveRot();
+    double driveY = input.getDriveY() * MAX_VELOCITY;
+    double driveX = input.getDriveX() * MAX_VELOCITY;
+    double driveRot = input.getDriveRot() * MAX_SPIN;
     ChassisSpeeds chassis = new ChassisSpeeds(driveY, driveX, driveRot); // All in m/s [Forward, Left, Counterclocwise (radians)]
     drive.setChassis(chassis);
   }

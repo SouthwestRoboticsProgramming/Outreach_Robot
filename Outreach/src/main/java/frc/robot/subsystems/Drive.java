@@ -36,7 +36,6 @@ public class Drive {
     
 
     public void setChassis(ChassisSpeeds chassis) {
-    System.out.println(chassis);
     
     MecanumDriveWheelSpeeds speeds = kinematics.toWheelSpeeds(chassis);
 
