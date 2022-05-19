@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.control.Input;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Shooter;
 
 public class Robot extends TimedRobot {
   public static final double PERIODIC_PER_SECOND = 50;
@@ -19,6 +20,7 @@ public class Robot extends TimedRobot {
 
   public Input input;
   public Drive drive;
+  public Shooter shooter;
 
   private volatile boolean running;
 
@@ -27,6 +29,7 @@ public class Robot extends TimedRobot {
 
     input = new Input();
     drive = new Drive();
+    shooter = new Shooter();
   }
 
   public void robotPeriodic() {
@@ -35,6 +38,10 @@ public class Robot extends TimedRobot {
     double driveRot = input.getDriveRot();
     ChassisSpeeds chassis = new ChassisSpeeds(driveY, driveX, driveRot); // All in m/s [Forward, Left, Counterclocwise (radians)]
     drive.setChassis(chassis);
+
+    if (input.getShooter()) {
+      shooter.spin(1.0);
+    }
   }
 
   public void disabledInit() {

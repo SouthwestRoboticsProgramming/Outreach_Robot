@@ -34,5 +34,9 @@ public class Input {
         }
         return buddy.getRightX();
     }
+
+    public boolean getShooter() {
+        return main.getXButton();
+    }
     
 }
