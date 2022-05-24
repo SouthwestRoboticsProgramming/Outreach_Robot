@@ -42,7 +42,9 @@ public class Robot extends TimedRobot {
     drive.setChassis(chassis);
 
     if (input.getHopper()) {
-      // Turn the servo so that it lets balls in TODO
+      hopper.blockBalls(true);
+    } else {
+      hopper.blockBalls(false);
     }
 
     shooter.spin(input.getShooterSpeed());

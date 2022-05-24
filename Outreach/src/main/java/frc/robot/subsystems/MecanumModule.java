@@ -15,6 +15,6 @@ public class MecanumModule {
 
     public void set(double speed) {
         motor.set(ControlMode.PercentOutput, speed / MAX_WHEEL_VELOCITY);
-        System.out.println(speed / MAX_WHEEL_VELOCITY);
+        // System.out.println(speed / MAX_WHEEL_VELOCITY);
     }
 }

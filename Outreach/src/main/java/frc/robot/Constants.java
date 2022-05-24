@@ -6,6 +6,10 @@ public class Constants {
 
     public static final double MAX_WHEEL_VELOCITY = 3.7;
 
-    public static final double DEADZONE = 0.025;
+    public static final double DEADZONE = 0.04;
 
+    public static final double SHOOTER_SPEED_COEFFICIENT = 0.5;
+
+    public static final double SERVO_CLOSE = 30.0;
+    public static final double SERVO_OPEN = 100.0;
 }

@@ -42,7 +42,7 @@ public class Input {
     }
 
     public boolean getHopper() {
-        return main.getAButton() || buddy.getAButton();
+        return main.getAButton() /*|| buddy.getAButton()*/;
     }
 
     private double deadzone(double number) {
