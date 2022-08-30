@@ -6,9 +6,12 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.control.Input;
 import frc.robot.subsystems.Drive;
 
-import static frc.robot.Constants.*;
-
 public class Robot extends TimedRobot {
+
+  private static final double MAX_SPIN = 6.28;
+  private static final double MAX_VELOCITY = 4;
+
+
   public static final double PERIODIC_PER_SECOND = 50;
   private static final Robot INSTANCE = new Robot();
 

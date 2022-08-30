@@ -1,48 +1,27 @@
 package frc.robot.control;
 
 import edu.wpi.first.wpilibj.XboxController;
-import static frc.robot.Constants.DEADZONE;
+
 
 public class Input {
+    private static final double DEADZONE = 0.1;
 
     private final XboxController main;
-    private final XboxController buddy;
     
     public Input() {
         main = new XboxController(0);
-        buddy = new XboxController(1);
     }
 
     public double getDriveX() {
-        if (Math.abs(main.getLeftX()) > DEADZONE) {
-            return main.getLeftX();
-        }
-        return deadzone(buddy.getLeftX());
+        return deadzone(main.getLeftX());
     }
 
     public double getDriveY() {
-        if (Math.abs(main.getLeftY()) > DEADZONE) {
-            return main.getLeftY();
-        }
-        return deadzone(buddy.getLeftY());
+        return deadzone(main.getLeftY());
     }
 
     public double getDriveRot() {
-        if (Math.abs(main.getRightX()) > DEADZONE) {
-            return main.getRightX();
-        }
-        return deadzone(buddy.getRightX());
-    }
-
-    public double getShooterSpeed() {
-        if (main.getRightTriggerAxis() > DEADZONE) {
-            return main.getRightTriggerAxis();
-        }
-        return buddy.getRightTriggerAxis();
-    }
-
-    public boolean getHopper() {
-        return main.getAButton() /*|| buddy.getAButton()*/;
+        return deadzone(main.getRightX());
     }
 
     private double deadzone(double number) {

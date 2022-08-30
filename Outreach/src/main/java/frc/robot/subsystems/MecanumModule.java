@@ -14,6 +14,10 @@ public class MecanumModule {
      *  Each time you make a MecanumModule,
      *  you should be able to choose the SRX ID
      *  and if the motor should be inverted.
+     * 
+     * Also:
+     *  
+     *  You should have a constant for max wheel velocity equal to 3.7.
      */
 
 
