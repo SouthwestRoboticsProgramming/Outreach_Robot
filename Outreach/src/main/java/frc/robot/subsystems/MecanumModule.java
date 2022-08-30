@@ -1,24 +1,24 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 public class MecanumModule {
-    /* Oh no! 😲
-     * All of the code in this file is gone!
-     * 
-     * It only needs one thing:
-     * 
-     *  A function that takes and input of velocity and spins a motor at that velocity
-     *  Call this function setVelocity.
-     * 
-     * Oh, and another:
-     * 
-     *  Each time you make a MecanumModule,
-     *  you should be able to choose the SRX ID
-     *  and if the motor should be inverted.
-     * 
-     * Also:
-     *  
-     *  You should have a constant for max wheel velocity equal to 3.7.
+
+    /*
+     * Go through in a way of swapping comments to code
+     * Disclaimer at the beginning
+     * Put percent output in Drive.java
+     * Flowchart
+     * Force questions
      */
+
+     // Create a Mecanum Module that needs to know motor ID and if it should spin backwards
+     public MecanumModule(int motorID, boolean backwards) {
+
+     }
+
 
 
      
