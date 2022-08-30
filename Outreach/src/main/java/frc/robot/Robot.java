@@ -5,8 +5,6 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.control.Input;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.Hopper;
-import frc.robot.subsystems.Shooter;
 
 import static frc.robot.Constants.*;
 
@@ -20,8 +18,6 @@ public class Robot extends TimedRobot {
 
   public Input input;
   public Drive drive;
-  public Shooter shooter;
-  public Hopper hopper;
 
   private volatile boolean running;
 
@@ -30,8 +26,6 @@ public class Robot extends TimedRobot {
 
     input = new Input();
     drive = new Drive();
-    shooter = new Shooter();
-    hopper = new Hopper();
   }
 
   public void robotPeriodic() {
@@ -40,14 +34,6 @@ public class Robot extends TimedRobot {
     double driveRot = input.getDriveRot() * MAX_SPIN;
     ChassisSpeeds chassis = new ChassisSpeeds(driveY, driveX, driveRot); // All in m/s [Forward, Left, Counterclocwise (radians)]
     drive.setChassis(chassis);
-
-    if (input.getHopper()) {
-      hopper.blockBalls(true);
-    } else {
-      hopper.blockBalls(false);
-    }
-
-    shooter.spin(input.getShooterSpeed());
   }
 
   public void disabledInit() {

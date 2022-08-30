@@ -28,10 +28,10 @@ public class Drive {
         // System.out.println("Drive created");
         kinematics = new MecanumDriveKinematics(frontLeft, frontRight, backLeft, backRight);
 
-        w1 = new MecanumModule(10, true);
-        w2 = new MecanumModule(11, false);
-        w3 = new MecanumModule(12, true);
-        w4 = new MecanumModule(13, false);
+        // w1 = new MecanumModule(10, true);
+        // w2 = new MecanumModule(11, false);
+        // w3 = new MecanumModule(12, true);
+        // w4 = new MecanumModule(13, false);
     }
     
 
@@ -39,10 +39,10 @@ public class Drive {
     
     MecanumDriveWheelSpeeds speeds = kinematics.toWheelSpeeds(chassis);
 
-    w1.set(speeds.frontLeftMetersPerSecond);
-    w2.set(speeds.frontRightMetersPerSecond);
-    w3.set(speeds.rearLeftMetersPerSecond);
-    w4.set(speeds.rearRightMetersPerSecond);
+    // w1.setVelocity(speeds.frontLeftMetersPerSecond);
+    // w2.setVelocity(speeds.frontRightMetersPerSecond);
+    // w3.setVelocity(speeds.rearLeftMetersPerSecond);
+    // w4.setVelocity(speeds.rearRightMetersPerSecond);
 
     }
 }

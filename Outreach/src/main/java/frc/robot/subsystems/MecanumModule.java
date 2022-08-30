@@ -1,20 +1,21 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
-import static frc.robot.Constants.MAX_WHEEL_VELOCITY;
-
 public class MecanumModule {
-    private final TalonSRX motor;
+    /* Oh no! 😲
+     * All of the code in this file is gone!
+     * 
+     * It only needs one thing:
+     * 
+     *  A function that takes and input of velocity and spins a motor at that velocity
+     *  Call this function setVelocity.
+     * 
+     * Oh, and another:
+     * 
+     *  Each time you make a MecanumModule,
+     *  you should be able to choose the SRX ID
+     *  and if the motor should be inverted.
+     */
 
-    public MecanumModule(int motorID, boolean inverted) {
-        motor = new TalonSRX(motorID);
-        motor.setInverted(inverted);
-    }
 
-    public void set(double speed) {
-        motor.set(ControlMode.PercentOutput, speed / MAX_WHEEL_VELOCITY);
-        // System.out.println(speed / MAX_WHEEL_VELOCITY);
-    }
+     
 }
