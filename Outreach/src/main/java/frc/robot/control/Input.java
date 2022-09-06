@@ -15,45 +15,53 @@ public class Input {
 
     public double getDriveX() {
         if (Math.abs(main.getLeftX()) > DEADZONE) {
-            return main.getLeftX();
+            return deadzone(main.getLeftX());
         }
         return deadzone(buddy.getLeftX());
     }
 
     public double getDriveY() {
         if (Math.abs(main.getLeftY()) > DEADZONE) {
-            return main.getLeftY();
+            return deadzone(main.getLeftY());
         }
         return deadzone(buddy.getLeftY());
     }
 
     public double getDriveRot() {
         if (Math.abs(main.getRightX()) > DEADZONE) {
-            return main.getRightX();
+            return deadzone(main.getRightX());
         }
         return deadzone(buddy.getRightX());
     }
 
     public double getShooterSpeed() {
         if (main.getRightTriggerAxis() > DEADZONE) {
-            return main.getRightTriggerAxis();
+            return deadzone(main.getRightTriggerAxis());
         }
-        return buddy.getRightTriggerAxis();
+        return deadzone(buddy.getRightTriggerAxis());
     }
 
     public boolean getHopper() {
-        return main.getAButton() /*|| buddy.getAButton()*/;
+        return main.getAButton() || buddy.getAButton();
     }
 
     public boolean getDriveEnable() {
         return main.getLeftBumper();
     }
 
-    private double deadzone(double number) {
-        if (number < DEADZONE) {
+    public static double map(double value, double minOld, double maxOld, double minNew, double maxNew) {
+        return (value - minOld) / (maxOld - minOld) * (maxNew - minNew) + minNew;
+    }
+
+    public static double deadzone(double measurement) {
+        if (Math.abs(measurement) < DEADZONE) {
             return 0;
         }
-        return number;
+
+        if (measurement > 0)
+            return map(measurement, DEADZONE, 1, 0, 1);
+        else
+            return -map(-measurement, DEADZONE, 1, 0, 1);
     }
     
 }
