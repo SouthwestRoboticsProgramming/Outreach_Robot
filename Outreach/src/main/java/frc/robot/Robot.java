@@ -35,17 +35,21 @@ public class Robot extends TimedRobot {
   }
 
   public void robotPeriodic() {
-    double driveY = input.getDriveY() * MAX_VELOCITY;
-    double driveX = input.getDriveX() * MAX_VELOCITY;
-    double driveRot = input.getDriveRot() * MAX_SPIN;
+    boolean enableDrive = input.getDriveEnable();
+    double driveX, driveY, driveRot;
+    if (enableDrive) {
+      driveY = input.getDriveY() * MAX_VELOCITY;
+      driveX = input.getDriveX() * MAX_VELOCITY;
+      driveRot = input.getDriveRot() * MAX_SPIN;
+    } else {
+      driveY = 0;
+      driveX = 0;
+      driveRot = 0;
+    }
     ChassisSpeeds chassis = new ChassisSpeeds(driveY, driveX, driveRot); // All in m/s [Forward, Left, Counterclocwise (radians)]
     drive.setChassis(chassis);
 
-    if (input.getHopper()) {
-      hopper.blockBalls(true);
-    } else {
-      hopper.blockBalls(false);
-    }
+    hopper.blockBalls(input.getHopper());
 
     shooter.spin(input.getShooterSpeed());
   }

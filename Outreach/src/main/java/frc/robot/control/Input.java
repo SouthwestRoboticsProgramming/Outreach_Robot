@@ -45,6 +45,10 @@ public class Input {
         return main.getAButton() /*|| buddy.getAButton()*/;
     }
 
+    public boolean getDriveEnable() {
+        return main.getLeftBumper();
+    }
+
     private double deadzone(double number) {
         if (number < DEADZONE) {
             return 0;
