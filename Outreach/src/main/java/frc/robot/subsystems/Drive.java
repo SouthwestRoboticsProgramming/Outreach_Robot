@@ -6,6 +6,9 @@ import edu.wpi.first.math.kinematics.MecanumDriveKinematics;
 import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 
 public class Drive {
+    
+    private static final double MAX_WHEEL_VELOCITY = 3.7;
+
     // Locations of wheels
 
     // Front back: 37 cm
@@ -39,10 +42,10 @@ public class Drive {
     
     MecanumDriveWheelSpeeds speeds = kinematics.toWheelSpeeds(chassis);
 
-    // w1.setVelocity(speeds.frontLeftMetersPerSecond);
-    // w2.setVelocity(speeds.frontRightMetersPerSecond);
-    // w3.setVelocity(speeds.rearLeftMetersPerSecond);
-    // w4.setVelocity(speeds.rearRightMetersPerSecond);
+    w1.setPercent(speeds.frontLeftMetersPerSecond / MAX_WHEEL_VELOCITY);
+    w2.setPercent(speeds.frontRightMetersPerSecond / MAX_WHEEL_VELOCITY);
+    w3.setPercent(speeds.rearLeftMetersPerSecond / MAX_WHEEL_VELOCITY);
+    w4.setPercent(speeds.rearRightMetersPerSecond / MAX_WHEEL_VELOCITY);
 
     }
 }
