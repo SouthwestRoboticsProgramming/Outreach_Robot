@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Servo;
-import static frc.robot.Constants.*;
+import frc.robot.ShuffleBoard;
 
 public class Hopper {
     private Servo servo;
@@ -14,14 +14,14 @@ public class Hopper {
 
     public void blockBalls(boolean block) {
         if (block && !lastBlock) {
-            timer = BLOCK_TIMER_TIME;
+            timer = (int) ShuffleBoard.HOPPER_TIMER_TIME.getDouble(50);
         }
 
         if (block || timer > 0) {
-            servo.setAngle(SERVO_OPEN);
+            servo.setAngle(ShuffleBoard.HOPPER_SERVO_OPEN.getDouble(30));
             System.out.println("Servo open");
         } else {
-            servo.setAngle(SERVO_CLOSE);
+            servo.setAngle(ShuffleBoard.HOPPER_SERVO_CLOSE.getDouble(100));
         }
 
         if (timer > 0)

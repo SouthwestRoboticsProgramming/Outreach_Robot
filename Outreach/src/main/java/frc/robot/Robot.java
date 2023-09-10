@@ -4,9 +4,9 @@ import edu.wpi.first.hal.HAL;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.control.Input;
-import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.TankDrive;
 
 import static frc.robot.Constants.*;
 
@@ -19,7 +19,7 @@ public class Robot extends TimedRobot {
   }
 
   public Input input;
-  public Drive drive;
+  public TankDrive drive;
   public Shooter shooter;
   public Hopper hopper;
 
@@ -29,29 +29,28 @@ public class Robot extends TimedRobot {
     System.out.println("Robot init");
 
     input = new Input();
-    drive = new Drive();
+    drive = new TankDrive();
     shooter = new Shooter();
     hopper = new Hopper();
   }
 
   public void robotPeriodic() {
     boolean enableDrive = input.getDriveEnable();
-    double driveX, driveY, driveRot;
+    double drive, turn;
     if (enableDrive) {
-      driveY = input.getDriveY() * MAX_VELOCITY;
-      driveX = input.getDriveX() * MAX_VELOCITY;
-      driveRot = input.getDriveRot() * MAX_SPIN;
+      drive = input.getDriveY() * ShuffleBoard.DRIVE_SPEED.getDouble(0);
+      turn = input.getDriveRot() * ShuffleBoard.DRIVE_TURN_SPEED.getDouble(0);
     } else {
-      driveY = 0;
-      driveX = 0;
-      driveRot = 0;
+      drive = 0;
+      turn = 0;
     }
-    ChassisSpeeds chassis = new ChassisSpeeds(driveY, driveX, driveRot); // All in m/s [Forward, Left, Counterclocwise (radians)]
-    drive.setChassis(chassis);
+    // ChassisSpeeds chassis = new ChassisSpeeds(driveY, driveX, driveRot); // All in m/s [Forward, Left, Counterclocwise (radians)]
+    // drive.setChassis(chassis);
+    this.drive.drive(drive, turn);
 
     hopper.blockBalls(input.getHopper());
 
-    shooter.spin(input.getShooterSpeed());
+    shooter.spin(input.getShooterSpeed() * ShuffleBoard.SHOOTER_SPEED.getDouble(0));
   }
 
   public void disabledInit() {

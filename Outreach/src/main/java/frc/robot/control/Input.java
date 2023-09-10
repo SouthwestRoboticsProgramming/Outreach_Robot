@@ -13,18 +13,18 @@ public class Input {
         buddy = new XboxController(1);
     }
 
-    public double getDriveX() {
-        if (Math.abs(main.getLeftX()) > DEADZONE) {
-            return deadzone(main.getLeftX());
-        }
-        return deadzone(buddy.getLeftX());
-    }
+    // public double getDriveX() {
+    //     if (Math.abs(main.getLeftX()) > DEADZONE) {
+    //         return deadzone(main.getLeftX());
+    //     }
+    //     return deadzone(buddy.getLeftX());
+    // }
 
     public double getDriveY() {
         if (Math.abs(main.getLeftY()) > DEADZONE) {
-            return deadzone(main.getLeftY());
+            return deadzone(-main.getLeftY());
         }
-        return deadzone(buddy.getLeftY());
+        return deadzone(-buddy.getLeftY());
     }
 
     public double getDriveRot() {
